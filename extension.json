@@ -1,0 +1,30 @@
+{
+    "name": "laveroadmin/notifications",
+    "title": {
+        "en": "Notifications (Telegram / Webhook / Email)",
+        "ru": "Уведомления (Telegram / Webhook / Email)"
+    },
+    "description": {
+        "en": "Send alerts to Telegram, Email, or Webhooks on WAFU blocks, exceptions, backups, and custom events.",
+        "ru": "Отправка уведомлений в Telegram, Email и Webhook при событиях WAFU, ошибках, бэкапах и др."
+    },
+    "category": "tools",
+    "icon": "icon-bell",
+    "version": "1.0.0",
+    "author": {"name": "Aleksandr Kireev", "email": "hello@bespredel.name", "url": "https://bespredel.name"},
+    "github": "https://github.com/LaveroAdmin/notifications",
+    "setup": {
+        "commands": [
+            {"cmd": "php artisan migrate", "desc": {"en": "Create notification_channels and notification_logs tables", "ru": "Создание таблиц notification_channels и notification_logs"}},
+            {"cmd": "php artisan admin:import notifications", "desc": {"en": "Import Notifications menu and permissions", "ru": "Импорт меню и прав доступа"}}
+        ],
+        "config": {"file": "config/admin.php", "code": "'notifications' => [\n    'enable' => true,\n],"},
+        "requirements": {"en": ["PHP >= 8.1"], "ru": ["PHP >= 8.1"]},
+        "notes": {
+            "en": ["Call \\LaveroAdmin\\Admin\\Notifications\\NotificationService::dispatch('wafu.block', 'Title', 'Body') anywhere in your app."],
+            "ru": ["Вызывайте \\LaveroAdmin\\Admin\\Notifications\\NotificationService::dispatch('wafu.block', 'Заголовок', 'Текст') в любом месте приложения."]
+        }
+    },
+    "key": "notifications",
+    "compatibility": {"php": ">=8.1", "laravel": "^10.0 || ^11.0 || ^12.0 || ^13.0", "admin": "^1.0", "extensions": ["pdo"]}
+}
